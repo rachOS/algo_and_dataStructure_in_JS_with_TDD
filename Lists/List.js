@@ -1,9 +1,15 @@
 class List {
   constructor() {
-    this.data = [];
-    this.length = 0;
+    this.dataStore = [];
+    this.listSize = 0;
     this.position = 0;
   }
+
+  clear() {}
+  find() {}
+  insert() {}
+  append() {}
+  contains() {}
 }
 
 const list = new List();
