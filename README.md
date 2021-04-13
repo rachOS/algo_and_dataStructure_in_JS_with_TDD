@@ -7,5 +7,5 @@ So I can hit two things at once.
 # INSTALL
 > `npm i`
 
-# RUN TESTS 
+# RUN ALL TESTS 
 > `npm run test:watch`
