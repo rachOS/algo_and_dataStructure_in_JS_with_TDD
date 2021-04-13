@@ -4,5 +4,8 @@ Hello there,
 This is suit of exercices to learn the fundamentals algorithms and data structures in `JavaScript` driven by tests with `Jest`.
 So I can hit two things at once.
 
-# RUN TEST 
+# INSTALL
+> `npm i`
+
+# RUN TESTS 
 > `npm run test:watch`
