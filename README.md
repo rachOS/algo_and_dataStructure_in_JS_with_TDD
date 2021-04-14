@@ -1,3 +1,11 @@
 # algo_and_dataStructure_in_JS_with_TDD
+Hello there,
 
-> Please go to the master branch to see the most recent work. Thank You
+This is suit of exercices to learn the fundamentals algorithms and data structures in `JavaScript` driven by tests with `Jest`.
+So I can hit two things at once.
+
+# INSTALL
+> `npm i`
+
+# RUN ALL TESTS 
+> `npm run test:watch`
