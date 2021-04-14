@@ -2,8 +2,7 @@ const { list, List } = require("./List");
 
 describe("data structure : List ", () => {
   beforeEach(() => {
-    delete list.dataStore;
-    return (list.dataStore = []);
+    list.clear;
   });
 
   it("list must be an instance of Class List", () => {
@@ -25,29 +24,48 @@ describe("data structure : List ", () => {
 
   it("{clear,find,toString,insert, append,remove,front,end,prev,next,length,currPos,moveTo,getElement,contains } \
   properties must be a Function", () => {
-    const methods = Object.values({
-      clear: list.clear,
-      find: list.find,
-      toString: list.toString,
-      insert: list.insert,
-      append: list.append,
-      remove: list.remove,
-      // front: list.front,
-      // end: list.end,
-      // prev: list.prev,
-      // next: list.next,
-      // length: list.length,
-      // currPos: list.currPos,
-      // moveTo: list.moveTo,
-      //getElement: list.getElement,
-      //contains: list.contains,
-    });
-    methods.map((method) => {
-      try {
-        expect(typeof method).toEqual("function");
-      } catch (error) {
-        console.log(error);
-      }
-    });
+    expect(typeof list.clear).toEqual("function");
+    expect(typeof list.find).toEqual("function");
+    expect(typeof list.toString).toEqual("function");
+    expect(typeof list.insert).toEqual("function");
+    expect(typeof list.append).toEqual("function");
+    expect(typeof list.remove).toEqual("function");
+    expect(typeof list.front).toEqual("function");
+    expect(typeof list.end).toEqual("function");
+    expect(typeof list.prev).toEqual("function");
+    expect(typeof list.next).toEqual("function");
+    expect(typeof list.length).toEqual("function");
+    expect(typeof list.currPos).toEqual("function");
+    expect(typeof list.moveTo).toEqual("function");
+    expect(typeof list.getElement).toEqual("function");
+    expect(typeof list.contains).toEqual("function");
+  });
+
+  it("List instance must have 18 properties", () => {
+    expect(Object.keys(list).length).toBe(18);
+  });
+
+  it("When an element append to the List, listSize value must be incremented by 1", () => {
+    list.append("element");
+    expect(list.listSize).toBe(1);
+    list.append("element");
+    expect(list.listSize).toBe(2);
+    list.append("element");
+    expect(list.listSize).not.toBe(4);
+  });
+
+  it("When an element append to the List, dataStore is not empty", () => {
+    list.append("element");
+    expect(list.dataStore.length > 0).toBeTruthy();
+  });
+
+  it("When an element append to the List, listSize and length have the same value", () => {
+    list.append("element");
+    expect(list.length()).toEqual(list.listSize);
+  });
+
+  it("When list.remove(element) is called, element must be in the List", () => {
+    list.append("element");
+    expect(list.remove("element")).toBeTruthy();
   });
 });
