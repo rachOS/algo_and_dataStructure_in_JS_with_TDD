@@ -1,9 +1,10 @@
 const { list, List } = require("./List");
 
 describe("data structure : List ", () => {
-  beforeEach(() => {
-    list.clear;
+  beforeAll(() => {
+    list.clear();
   });
+  afterAll(() => list.append("el"));
 
   it("list must be an instance of Class List", () => {
     expect(list).toBeInstanceOf(List);
@@ -14,7 +15,8 @@ describe("data structure : List ", () => {
   });
 
   it("{dataStore} property must be an empty Array on first instance", () => {
-    expect(list.dataStore).toHaveLength(0);
+    const firstInstance = new List([], 0, 0);
+    expect(firstInstance.dataStore).toHaveLength(0);
   });
 
   it("{listSize, position } properties must be a Number", () => {
@@ -41,8 +43,8 @@ describe("data structure : List ", () => {
     expect(typeof list.contains).toEqual("function");
   });
 
-  it("List instance must have 18 properties", () => {
-    expect(Object.keys(list).length).toBe(18);
+  it("List instance must have 3 properties", () => {
+    expect(Object.keys(list).length).toBe(3);
   });
 
   it("When an element append to the List, listSize value must be incremented by 1", () => {
@@ -55,17 +57,31 @@ describe("data structure : List ", () => {
   });
 
   it("When an element append to the List, dataStore is not empty", () => {
-    list.append("element");
     expect(list.dataStore.length > 0).toBeTruthy();
   });
 
   it("When an element append to the List, listSize and length have the same value", () => {
-    list.append("element");
     expect(list.length()).toEqual(list.listSize);
   });
 
-  it("When list.remove(element) is called, element must be in the List", () => {
-    list.append("element");
-    expect(list.remove("element")).toBeTruthy();
+  it("When list.find(element) is called, a Number must be returned", () => {
+    expect(list.find("element")).toEqual(expect.any(Number));
+  });
+
+  it("When an element is removed from a list,this element must not be found", () => {
+    list.append("el");
+    list.remove("el");
+    expect(list.find("el")).toBe(-1);
+  });
+
+  it("When an element is removed from a list, list.dataStore must not have empty items elements", () => {
+    list.append("el");
+    list.remove("el");
+    list.append("el2");
+    expect(list.dataStore).toEqual(expect.not.arrayContaining(["el"]));
+  });
+
+  it("When list.clear() is called, it reset list.dataStore to an empty Array", () => {
+    expect(list.clear()).toBe(expect(list.dataStore).toHaveLength(0));
   });
 });

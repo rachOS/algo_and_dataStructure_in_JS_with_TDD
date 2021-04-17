@@ -3,29 +3,18 @@ class List {
     this.dataStore = [];
     this.listSize = 0;
     this.position = 0;
-
-    this.clear = this.clear;
-    this.find = this.find;
-    this.toString = this.toString;
-    this.insert = this.insert;
-    this.append = this.append;
-    this.contains = this.contains;
-    this.remove = this.remove;
-    this.front = this.front;
-    this.end = this.end;
-    this.prev = this.prev;
-    this.next = this.next;
-    this.length = this.length;
-    this.currPos = this.currPos;
-    this.moveTo = this.moveTo;
-    this.getElement = this.getElement;
   }
 
   /**Clears all elements from list */
-  clear() {}
+  clear() {
+    delete this.dataStore;
+    this.dataStore = [];
+  }
 
-  /** */
-  find() {}
+  /** Return the index of founded element*/
+  find(element) {
+    return this.dataStore.indexOf(element);
+  }
 
   /**Returns string representation of list */
   toString() {}
@@ -45,7 +34,8 @@ class List {
 
   /**Removes element from list */
   remove(element) {
-    return this.dataStore.find((el) => el === element);
+    const indexOf = this.find(element);
+    return indexOf > -1 && this.dataStore.splice(indexOf, 1) && --this.listSize;
   }
 
   /** Sets current position to first element of list*/
