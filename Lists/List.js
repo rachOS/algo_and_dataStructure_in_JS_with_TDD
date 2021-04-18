@@ -17,10 +17,20 @@ class List {
   }
 
   /**Returns string representation of list */
-  toString() {}
+  toString() {
+    return this.dataStore.toString();
+  }
 
   /** */
-  insert() {}
+  insert(element, after) {
+    const insertPos = this.find(after);
+    if (insertPos > -1) {
+      this.dataStore.splice(insertPos + 1, 0, element);
+      ++this.listSize;
+      return true;
+    }
+    return false;
+  }
 
   /** Adds new element to end of list
    * @param {Any} element
@@ -30,7 +40,9 @@ class List {
   }
 
   /** */
-  contains() {}
+  contains(element) {
+    return this.find(element) >= 0;
+  }
 
   /**Removes element from list */
   remove(element) {
@@ -39,16 +51,24 @@ class List {
   }
 
   /** Sets current position to first element of list*/
-  front() {}
+  front() {
+    return (this.position = 0);
+  }
 
   /**Sets current position to last element of list */
-  end() {}
+  end() {
+    return (this.position = this.listSize - 1);
+  }
 
   /**Moves current position back one element */
-  prev() {}
+  prev() {
+    return --this.position;
+  }
 
   /**Moves current position forward one element */
-  next() {}
+  next() {
+    return ++this.position;
+  }
 
   /**Returns the number of elements in list
    * @returns {Number}
@@ -58,13 +78,19 @@ class List {
   }
 
   /**Returns the current position in list */
-  currPos() {}
+  currPos() {
+    return this.position;
+  }
 
   /**Moves the current position to specified position */
-  moveTo() {}
+  moveTo(number) {
+    return (this.position = number);
+  }
 
   /**Returns element at current position */
-  getElement() {}
+  getElement() {
+    return this.dataStore[this.position];
+  }
 }
 
 const list = new List();
