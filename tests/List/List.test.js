@@ -1,4 +1,4 @@
-const { list, List } = require("./List");
+const { list, List } = require("../../dataStructure/Lists/List");
 
 describe("data structure : List ", () => {
   beforeAll(() => {
